@@ -29,14 +29,14 @@ class PaynowSettings(Document):
 		from paynow import Paynow
 
 		# Setup redirect and result URLs
-		return_url = get_url(f"/paynow_checkout_success?{urlencode({'reference_doctype': kwargs.get('reference_doctype'), 'reference_docname': kwargs.get('reference_docname')})}")
+		return_url = get_url(f"/payment-success?{urlencode({'doctype': kwargs.get('reference_doctype'), 'docname': kwargs.get('reference_docname')})}")
 		result_url = get_url(f"/api/method/zw_frappe_payments_addons.api.paynow_webhook")
 
 		paynow = Paynow(
 			self.integration_id, 
 			self.get_password("integration_key"),
-			result_url, 
-			return_url
+			return_url, 
+			result_url
 		)
 
 		payer_email = kwargs.get("payer_email") or frappe.session.user
