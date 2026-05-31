@@ -15,7 +15,7 @@ class EcocashSettings(Document):
 		create_payment_gateway(
 			"Ecocash-" + self.gateway_name,
 			settings="Ecocash Settings",
-			controller=self.gateway_name,
+			controller=self.name,
 		)
 		call_hook_method("payment_gateway_enabled", gateway="Ecocash-" + self.gateway_name)
 

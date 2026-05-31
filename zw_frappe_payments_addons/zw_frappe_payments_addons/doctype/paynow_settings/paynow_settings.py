@@ -15,7 +15,7 @@ class PaynowSettings(Document):
 		create_payment_gateway(
 			"Paynow-" + self.gateway_name,
 			settings="Paynow Settings",
-			controller=self.gateway_name,
+			controller=self.name,
 		)
 		call_hook_method("payment_gateway_enabled", gateway="Paynow-" + self.gateway_name)
 
