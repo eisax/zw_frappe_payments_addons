@@ -1,0 +1,22 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<div class="container text-center mt-5">
+    <h2>Ecocash Payment</h2>
+    <p>Please enter your Ecocash mobile number to complete the payment of <strong>{{ currency }} {{ amount }}</strong>.</p>
+    
+    <form method="POST" action="/api/method/zw_frappe_payments_addons.api.initiate_ecocash_payment">
+        <input type="hidden" name="reference_doctype" value="{{ reference_doctype }}">
+        <input type="hidden" name="reference_docname" value="{{ reference_docname }}">
+        <input type="hidden" name="amount" value="{{ amount }}">
+        <input type="hidden" name="currency" value="{{ currency }}">
+        
+        <div class="form-group mb-3 text-start mx-auto" style="max-width: 300px;">
+            <label for="msisdn">Ecocash Mobile Number</label>
+            <input type="text" class="form-control mt-1" id="msisdn" name="msisdn" placeholder="e.g. 263774222475" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Pay Now</button>
+    </form>
+</div>
+{% endblock %}
